@@ -1,11 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <title>Project: Library</title>
 </head>
+
 <body>
-    
+    <h1>Project: Library</h1>
+    <h2>By: Alex Rhine</h2>
+    <hr>
+
+    <form id="book-form">
+        <div class="book-adder">
+            <p>Please Enter Book Information</p>
+
+            <label for="book-title">Book Title:</label>
+            <input type="text" name="book-title-input" id="book-title" placeholder="Book Title">
+
+            <label for="book-author">Book Author:</label>
+            <input type="text" name="book-author-input" id="book-author" placeholder="Book Author">
+
+            <label for="book-pages">Book Pages:</label>
+            <input type="number" name="book-pages-input" id="book-pages" min="0">
+
+            <input type="submit" value="Submit">
+        </div>
+    </form>
+
+    <script src="script.js"></script>
 </body>
+
 </html>
