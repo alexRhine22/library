@@ -13,23 +13,34 @@
     <h2>By: Alex Rhine</h2>
     <hr>
 
-    <form id="book-form">
-        <div class="book-adder">
-            <p>Please Enter Book Information</p>
+    <button id="form-toggle-button" class="form-toggle__button">Click here to add a new book</button>
 
-            <label for="book-title">Book Title:</label>
+    <form>
+        <div id="book-form" class="book-adder">
+            <p>Please Enter New Book information</p>
+
+            <label for="book-title">Book Title</label>
             <input type="text" name="book-title-input" id="book-title" placeholder="Book Title">
 
-            <label for="book-author">Book Author:</label>
+            <label for="book-author">Book Author</label>
             <input type="text" name="book-author-input" id="book-author" placeholder="Book Author">
 
-            <label for="book-pages">Book Pages:</label>
+            <label for="book-pages">Book Pages</label>
             <input type="number" name="book-pages-input" id="book-pages" min="0">
 
-            <input type="submit" value="Submit">
+            <input type="submit" value="Add New Book" id="new-book-button">
         </div>
     </form>
 
+    <h3>Your Book Library</h3>
+    <table id="book-table">
+        <tr>
+            <th>Book Title</th>
+            <th>Book Author</th>
+            <th>Book Pages</th>
+            <th>Remove Book?</th>
+        </tr>
+    </table>
     <script src="script.js"></script>
 </body>
 
