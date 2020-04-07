@@ -65,6 +65,15 @@ input[type=number], input[type=submit], select {
     transition-duration: 0.3s;
 }
 
+.radio-label {
+    display: inline-block;
+    text-align: center;
+}
+
+.book-adder.active input[type=radio] {
+    /* display: inline-block; */
+    /* text-align: center; */
+}
 .book-adder.active input[type=submit]:hover {
     background-color: #52A056;
 }
