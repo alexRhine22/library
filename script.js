@@ -5,6 +5,12 @@ const bookTable = document.getElementById('book-table');
 
 let myLibrary = [];
 
+const book1 = new Book('The Hobbit', 'J.R.R. Tolkien', '310', 'No');
+const book2 = new Book('The Great Gatsby', 'F. Scott Fitzgerald', '218', 'No');
+
+pushBookToLibrary(book1); // adds starting book to library
+pushBookToLibrary(book2); // adds starting book to library
+
 /**
  * Book object constructor
  * @param {*} title 
@@ -51,12 +57,14 @@ function addBookToLibrary() {
  * 
  */
 function render() {  
-    for (var i = 1; i < bookTable.rows.length; i++) {
-        bookTable.deleteRow(i);
-    }    
+    let tableContent = document.getElementById('table-body')
+
+    while (tableContent.rows.length >= 1) {
+        tableContent.deleteRow(0)
+    }
   
     for (var i = 0; i < myLibrary.length; i++) {
-        var row = bookTable.insertRow(-1);
+        var row = tableContent.insertRow(-1);
         var cell1 = row.insertCell(0);
         var cell2 = row.insertCell(1);
         var cell3 = row.insertCell(2);
@@ -67,12 +75,15 @@ function render() {
         cell3.innerHTML = myLibrary[i].bookPages;
 
         cell4.innerHTML = myLibrary[i].bookRead;
-        cell4.setAttribute('id', i);
-        cell4.setAttribute('onClick', 'toggleRead(this.id)');
+        cell4.style.cursor = 'pointer';
+        cell4.setAttribute('onClick', 'toggleRead(this)');
 
         cell5.innerHTML = 'Delete';
         cell5.classList.add('cell5');
         cell5.setAttribute('id', i);
+        cell5.style.cursor = 'pointer';
+        cell5.onmouseover = function() {cell5.style.color = "red";};
+        cell5.onmouseout = function() {cell5.style.color = "black";};
         cell5.setAttribute('onClick', 'removeBookFromLibrary(this.id)');
 
         document.getElementById('book-title').value = '';
@@ -82,12 +93,25 @@ function render() {
 
 }
 
+function pushBookToLibrary(book) {
+    myLibrary.push(book);
+    render();
+}
+
 function removeBookFromLibrary(index) {
     myLibrary.splice(index, 1);
     render();
 }
 
-function toggleRead(index) {
+function toggleRead(element) {
+    let index = element.parentElement.id.split('')[(element.parentElement.id.split('').length-1)]
+
+    if (element.innerHTML === 'Yes') {
+        element.innerHTML = 'No';
+    } else if (element.innerHTML === 'No') {
+        element.innerHTML = 'Yes';
+    } 
+    
 }
 
 /**
@@ -105,3 +129,4 @@ newBookButton.addEventListener('click', (e) => {
     addBookToLibrary();
     bookForm.classList.toggle('active');
 });
+
