@@ -24,7 +24,7 @@ function Book(
 }
 
 /**
- * adds new book object to my library array
+ * adds new book object to myLibrary array
  */
 function addBookToLibrary() {
     var titleInput = document.getElementById('book-title').value;
@@ -33,16 +33,9 @@ function addBookToLibrary() {
     var bookRead = document.getElementById('book-read-yes').checked;
     var bookNotRead = document.getElementById('book-read-no').checked;
 
-    // console.log(titleInput);
-    // console.log(authorInput);  
-    // console.log(pagesInput);  
-    // console.log(bookRead);
-    // console.log(bookNotRead);
-
     if (titleInput == '' || authorInput == '' || pagesInput == '') {
         alert('Please fill out every field to add a book to the database.');
     } else {
-        var newBook = '';
         if (bookRead == true) {
             var newBook = new Book(titleInput, authorInput, pagesInput, 'Yes');
         } else if (bookNotRead == true) {
@@ -50,21 +43,51 @@ function addBookToLibrary() {
         }
 
         myLibrary.push(newBook);
+        render();
+    }
+}
 
+/**
+ * 
+ */
+function render() {  
+    for (var i = 1; i < bookTable.rows.length; i++) {
+        bookTable.deleteRow(i);
+    }    
+  
+    for (var i = 0; i < myLibrary.length; i++) {
         var row = bookTable.insertRow(-1);
         var cell1 = row.insertCell(0);
         var cell2 = row.insertCell(1);
         var cell3 = row.insertCell(2);
         var cell4 = row.insertCell(3);
-        cell1.innerHTML = myLibrary[myLibrary.length - 1].bookTitle;
-        cell2.innerHTML = myLibrary[myLibrary.length - 1].bookAuthor;
-        cell3.innerHTML = myLibrary[myLibrary.length - 1].bookPages;
-        cell4.innerHTML = myLibrary[myLibrary.length - 1].bookRead;
+        var cell5 = row.insertCell(4);
+        cell1.innerHTML = myLibrary[i].bookTitle;
+        cell2.innerHTML = myLibrary[i].bookAuthor;
+        cell3.innerHTML = myLibrary[i].bookPages;
+
+        cell4.innerHTML = myLibrary[i].bookRead;
+        cell4.setAttribute('id', i);
+        cell4.setAttribute('onClick', 'toggleRead(this.id)');
+
+        cell5.innerHTML = 'Delete';
+        cell5.classList.add('cell5');
+        cell5.setAttribute('id', i);
+        cell5.setAttribute('onClick', 'removeBookFromLibrary(this.id)');
 
         document.getElementById('book-title').value = '';
         document.getElementById('book-author').value = '';
         document.getElementById('book-pages').value = '0';
-    }
+    } 
+
+}
+
+function removeBookFromLibrary(index) {
+    myLibrary.splice(index, 1);
+    render();
+}
+
+function toggleRead(index) {
 }
 
 /**
