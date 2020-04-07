@@ -28,6 +28,13 @@
             <label for="book-pages">Book Pages</label>
             <input type="number" name="book-pages-input" id="book-pages" min="0" value="0">
 
+            <p class="radio-label">Have you finished reading this book?</p>
+            <input type="radio" name="read-book-radio-button" id="book-read-yes" value="Yes">
+            <label for="book-read-yes">Yes</label>
+
+            <input type="radio" name="read-book-radio-button" id="book-read-no" value="No" checked>
+            <label for="book-read-no">No</label>
+            
             <input type="submit" value="Add New Book" id="new-book-button">
         </div>
     </form>
@@ -38,6 +45,7 @@
             <th>Book Title</th>
             <th>Book Author</th>
             <th>Book Pages</th>
+            <th>Book Completed</th>
             <th>Remove Book?</th>
         </tr>
     </table>
