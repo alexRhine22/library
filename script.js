@@ -22,34 +22,42 @@ function addBookToLibrary() {
     var authorInput = document.getElementById('book-author').value;
     var pagesInput = document.getElementById('book-pages').value;
 
-    var newBook = new Book(titleInput, authorInput, pagesInput);
+    console.log(titleInput);// for checking input
+    console.log(authorInput);  // for checking input
+    console.log(pagesInput);  // for checking input
 
-    myLibrary.push(newBook);
-    
-    var row = bookTable.insertRow(-1);
-    var cell1 = row.insertCell(0);
-    var cell2 = row.insertCell(1);        
-    var cell3 = row.insertCell(2);
-    cell1.innerHTML = myLibrary[myLibrary.length - 1].bookTitle;
-    cell2.innerHTML = myLibrary[myLibrary.length - 1].bookAuthor;
-    cell3.innerHTML = myLibrary[myLibrary.length - 1].bookPages;
+    if (titleInput != '' || authorInput != '' || pagesInput != '') {
+        alert('Please fill out every field to add a book to the database.');
+    } else {
+        var newBook = new Book(titleInput, authorInput, pagesInput);
 
-    document.getElementById('book-title').value = '';
-    document.getElementById('book-author').value = '';
-    document.getElementById('book-pages').value = '0';
+        myLibrary.push(newBook);
+
+        var row = bookTable.insertRow(-1);
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        var cell3 = row.insertCell(2);
+        cell1.innerHTML = myLibrary[myLibrary.length - 1].bookTitle;
+        cell2.innerHTML = myLibrary[myLibrary.length - 1].bookAuthor;
+        cell3.innerHTML = myLibrary[myLibrary.length - 1].bookPages;
+
+        document.getElementById('book-title').value = '';
+        document.getElementById('book-author').value = '';
+        document.getElementById('book-pages').value = '0';
+    }
 }
 
 /**
- * eventlistener for add new book button
+ * eventListener for add new book button
  */
 bookFormButton.addEventListener('click', (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
 
     bookForm.classList.toggle('active');
 });
 
 newBookButton.addEventListener('click', (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
 
     addBookToLibrary();
     bookForm.classList.toggle('active');
