@@ -1,7 +1,7 @@
-const bookFormButton = document.getElementById("form-toggle-button");
-const bookForm = document.getElementById("book-form");
-const newBookButton = document.getElementById("new-book-button");
-const bookTable = document.getElementById("book-table");
+const bookFormButton = document.getElementById('form-toggle-button');
+const bookForm = document.getElementById('book-form');
+const newBookButton = document.getElementById('new-book-button');
+const bookTable = document.getElementById('book-table');
 
 let myLibrary = [];
 
@@ -33,6 +33,10 @@ function addBookToLibrary() {
     cell1.innerHTML = myLibrary[myLibrary.length - 1].bookTitle;
     cell2.innerHTML = myLibrary[myLibrary.length - 1].bookAuthor;
     cell3.innerHTML = myLibrary[myLibrary.length - 1].bookPages;
+
+    document.getElementById('book-title').value = '';
+    document.getElementById('book-author').value = '';
+    document.getElementById('book-pages').value = '0';
 }
 
 /**
